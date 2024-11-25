@@ -1,0 +1,23 @@
+---
+title: "Biology_Project"
+output: html_document
+date: "2024-11-25"
+---
+
+```{r setup, include=FALSE}
+raw_data <- read.csv("Bio Project Data.csv")
+raw_data <- na.omit(raw_data)
+head(raw_data)
+```
+
+```{r 1, include=FALSE}
+library(dplyr)
+summarize(raw_data)
+```
+
+```{r 2, include=FALSE}
+# Use filter to extract specific locations
+raw_data_response <- raw_data %>%
+  filter(Response%in% c("Size", "Survival", "Shell length", "Mortality", "Growth rate"))
+raw_data_response
+```
