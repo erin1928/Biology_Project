@@ -21,3 +21,79 @@ raw_data_response <- raw_data %>%
   filter(Response%in% c("Size", "Survival", "Shell length", "Mortality", "Growth rate"))
 raw_data_response
 ```
+
+```{r 3, include=FALSE}
+library(ggplot2)
+raw_data_size <- raw_data_response %>%
+  filter(Response%in% c("Size"))
+response_co2 <- as.factor(raw_data_size$ResponseToCO2Increase)
+size_plot <- ggplot(raw_data_size, aes(x = Response, fill = response_co2)) +
+  geom_bar(position = "dodge") +  # Position bars side by side
+  labs(title = "Bar Plot of CO2 Response by Size",
+       x = "Group",
+       y = "Count") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set3")
+
+size_plot
+```
+
+```{r 4, include=FALSE}
+library(ggplot2)
+raw_data_survival <- raw_data_response %>%
+  filter(Response%in% c("Survival"))
+response_co2 <- as.factor(raw_data_survival$ResponseToCO2Increase)
+survival_plot <- ggplot(raw_data_survival, aes(x = Response, fill = response_co2)) +
+  geom_bar(position = "dodge") +  # Position bars side by side
+  labs(title = "Bar Plot of CO2 Response by Survivorship",
+       x = "Group",
+       y = "Count") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set3")
+
+survival_plot
+```
+```{r 5, include=FALSE}
+library(ggplot2)
+raw_data_shell <- raw_data_response %>%
+  filter(Response%in% c("Shell length"))
+response_co2 <- as.factor(raw_data_shell$ResponseToCO2Increase)
+shell_plot <- ggplot(raw_data_shell, aes(x = Response, fill = response_co2)) +
+  geom_bar(position = "dodge") +  # Position bars side by side
+  labs(title = "Bar Plot of CO2 Response by Shell Length",
+       x = "Group",
+       y = "Count") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set3")
+shell_plot
+```
+
+```{r 6, include=FALSE}
+library(ggplot2)
+raw_data_mortality <- raw_data_response %>%
+  filter(Response%in% c("Mortality"))
+response_co2 <- as.factor(raw_data_mortality$ResponseToCO2Increase)
+mortality_plot <- ggplot(raw_data_mortality, aes(x = Response, fill = response_co2)) +
+  geom_bar(position = "dodge") +  # Position bars side by side
+  labs(title = "Bar Plot of CO2 Response by Mortality",
+       x = "Group",
+       y = "Count") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set3")
+mortality_plot
+```
+
+```{r 7, include=FALSE}
+library(ggplot2)
+raw_data_growth <- raw_data_response %>%
+  filter(Response%in% c("Growth rate"))
+response_co2 <- as.factor(raw_data_growth$ResponseToCO2Increase)
+growth_plot <- ggplot(raw_data_growth, aes(x = Response, fill = response_co2)) +
+  geom_bar(position = "dodge") +  # Position bars side by side
+  labs(title = "Bar Plot of CO2 Response by Growth Rate",
+       x = "Group",
+       y = "Count") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set3")
+growth_plot
+```
