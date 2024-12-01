@@ -97,3 +97,34 @@ growth_plot <- ggplot(raw_data_growth, aes(x = Response, fill = response_co2)) +
   scale_fill_brewer(palette = "Set3")
 growth_plot
 ```
+
+```{r 8, include=FALSE}
+library(ggplot2)
+raw_data_growth_animal <- raw_data_response %>%
+  filter(Response == "Growth rate", Kingdom == "Animalia")
+summarize(raw_data_growth_animal)
+response_co2 <- as.factor(raw_data_growth_animal$ResponseToCO2Increase)
+growth_plot_animal <- ggplot(raw_data_growth_animal, aes(x = Response, fill = response_co2)) +
+  geom_bar(position = "dodge") +  # Position bars side by side
+  labs(title = "Bar Plot of CO2 Response by Growth Rate Across Kingdom Animalia",
+       x = "Group",
+       y = "Count") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set3")
+growth_plot_animal
+```
+```{r 9, include=FALSE}
+library(ggplot2)
+raw_data_growth_plant <- raw_data_response %>%
+  filter(Response %in% c("Growth rate", "Chromista"))
+response_co2 <- as.factor(raw_data_growth_plant$ResponseToCO2Increase)
+growth_plot_plant <- ggplot(raw_data_growth_plant, aes(x = Response, fill = response_co2)) +
+  geom_bar(position = "dodge") +  # Position bars side by side
+  labs(title = "Bar Plot of CO2 Response by Growth Rate Across Kingdom Chromista",
+       x = "Group",
+       y = "Count") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set3")
+growth_plot_plant
+```
+
