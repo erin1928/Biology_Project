@@ -24,107 +24,246 @@ raw_data_response
 
 ```{r 3, include=FALSE}
 library(ggplot2)
+custom_colors <- c("Decreases" = "#FF6347",   # Tomato
+                   "Increases" = "#4682B4",   # SteelBlue
+                   "Other" = "#32CD32",
+                   "No_Response" = "#FDFD96")
 raw_data_size <- raw_data_response %>%
   filter(Response%in% c("Size"))
 response_co2 <- as.factor(raw_data_size$ResponseToCO2Increase)
 size_plot <- ggplot(raw_data_size, aes(x = Response, fill = response_co2)) +
   geom_bar(position = "dodge") +  # Position bars side by side
-  labs(title = "Bar Plot of CO2 Response by Size",
-       x = "Group",
+  labs(title = "Bar Plot of Adult Size by CO2 Increase",
+       x = "Size",
        y = "Count") +
   theme_minimal() +
-  scale_fill_brewer(palette = "Set3")
+  scale_fill_manual(values = custom_colors)
 
 size_plot
 ```
 
 ```{r 4, include=FALSE}
 library(ggplot2)
+custom_colors <- c("Decreases" = "#FF6347",   # Tomato
+                   "Increases" = "#4682B4",   # SteelBlue
+                   "Other" = "#32CD32",
+                   "No_Response" = "#FDFD96")
 raw_data_survival <- raw_data_response %>%
   filter(Response%in% c("Survival"))
 response_co2 <- as.factor(raw_data_survival$ResponseToCO2Increase)
 survival_plot <- ggplot(raw_data_survival, aes(x = Response, fill = response_co2)) +
   geom_bar(position = "dodge") +  # Position bars side by side
-  labs(title = "Bar Plot of CO2 Response by Survivorship",
-       x = "Group",
+  labs(title = "Bar Plot of Survivorship CO2 Increase",
+       x = "Survival",
        y = "Count") +
   theme_minimal() +
-  scale_fill_brewer(palette = "Set3")
+  scale_fill_manual(values = custom_colors)
 
 survival_plot
 ```
-```{r 5, include=FALSE}
-library(ggplot2)
-raw_data_shell <- raw_data_response %>%
-  filter(Response%in% c("Shell length"))
-response_co2 <- as.factor(raw_data_shell$ResponseToCO2Increase)
-shell_plot <- ggplot(raw_data_shell, aes(x = Response, fill = response_co2)) +
-  geom_bar(position = "dodge") +  # Position bars side by side
-  labs(title = "Bar Plot of CO2 Response by Shell Length",
-       x = "Group",
-       y = "Count") +
-  theme_minimal() +
-  scale_fill_brewer(palette = "Set3")
-shell_plot
-```
+
 
 ```{r 6, include=FALSE}
 library(ggplot2)
+custom_colors <- c("Decreases" = "#FF6347",   # Tomato
+                   "Increases" = "#4682B4",   # SteelBlue
+                   "Other" = "#32CD32",
+                   "No_Response" = "#FDFD96")
 raw_data_mortality <- raw_data_response %>%
   filter(Response%in% c("Mortality"))
 response_co2 <- as.factor(raw_data_mortality$ResponseToCO2Increase)
 mortality_plot <- ggplot(raw_data_mortality, aes(x = Response, fill = response_co2)) +
   geom_bar(position = "dodge") +  # Position bars side by side
-  labs(title = "Bar Plot of CO2 Response by Mortality",
-       x = "Group",
+  labs(title = "Bar Plot of Mortality by CO2 Increase",
+       x = "Mortality",
        y = "Count") +
   theme_minimal() +
-  scale_fill_brewer(palette = "Set3")
+  scale_fill_manual(values = custom_colors)
 mortality_plot
 ```
 
 ```{r 7, include=FALSE}
 library(ggplot2)
+custom_colors <- c("Decreases" = "#FF6347",   # Tomato
+                   "Increases" = "#4682B4",   # SteelBlue
+                   "Other" = "#32CD32",
+                   "No_Response" = "#FDFD96")
 raw_data_growth <- raw_data_response %>%
   filter(Response%in% c("Growth rate"))
 response_co2 <- as.factor(raw_data_growth$ResponseToCO2Increase)
 growth_plot <- ggplot(raw_data_growth, aes(x = Response, fill = response_co2)) +
   geom_bar(position = "dodge") +  # Position bars side by side
   labs(title = "Bar Plot of CO2 Response by Growth Rate",
-       x = "Group",
+       x = "Growth Rate",
        y = "Count") +
   theme_minimal() +
-  scale_fill_brewer(palette = "Set3")
+  scale_fill_manual(values = custom_colors)
 growth_plot
 ```
 
 ```{r 8, include=FALSE}
 library(ggplot2)
+custom_colors <- c("Decreases" = "#FF6347",   # Tomato
+                   "Increases" = "#4682B4",   # SteelBlue
+                   "Other" = "#32CD32",
+                   "No_Response" = "#FDFD96")
 raw_data_growth_animal <- raw_data_response %>%
-  filter(Response == "Growth rate", Kingdom == "Animalia")
+  filter(Response == c("Growth rate"), Kingdom == c("Animalia"))
 summarize(raw_data_growth_animal)
 response_co2 <- as.factor(raw_data_growth_animal$ResponseToCO2Increase)
 growth_plot_animal <- ggplot(raw_data_growth_animal, aes(x = Response, fill = response_co2)) +
   geom_bar(position = "dodge") +  # Position bars side by side
-  labs(title = "Bar Plot of CO2 Response by Growth Rate Across Kingdom Animalia",
-       x = "Group",
+  labs(title = "Bar Plot of Growth Rate by CO2 Increase Across Kingdom Animalia",
+       x = "Growth Rate",
        y = "Count") +
   theme_minimal() +
-  scale_fill_brewer(palette = "Set3")
+  scale_fill_manual(values = custom_colors)
 growth_plot_animal
 ```
-```{r 9, include=FALSE}
+
+```{r 4, include=FALSE}
 library(ggplot2)
+custom_colors <- c("Decreases" = "#FF6347",   # Tomato
+                   "Increases" = "#4682B4",   # SteelBlue
+                   "Other" = "#32CD32",
+                   "No_Response" = "#FDFD96")
+raw_data_survival_animal <- raw_data_response %>%
+  filter(Response == c("Survival"), Kingdom == c("Animalia"))
+summarize(raw_data_survival_animal)
+response_co2 <- as.factor(raw_data_survival_animal$ResponseToCO2Increase)
+survival_plot_animal <- ggplot(raw_data_survival_animal, aes(x = Response, fill = response_co2)) +
+  geom_bar(position = "dodge") +  # Position bars side by side
+  labs(title = "Bar Plot of Survivorship by CO2 Increase Across Kingdom Animalia",
+       x = "Survival",
+       y = "Count") +
+  theme_minimal() +
+  scale_fill_manual(values = custom_colors)
+
+survival_plot_animal
+```
+```{r 4, include=FALSE}
+library(ggplot2)
+custom_colors <- c("Decreases" = "#FF6347",   # Tomato
+                   "Increases" = "#4682B4",   # SteelBlue
+                   "Other" = "#32CD32",
+                   "No_Response" = "#FDFD96")
+raw_data_mortality_animal <- raw_data_response %>%
+  filter(Response == c("Mortality"), Kingdom == c("Animalia"))
+summarize(raw_data_mortality_animal)
+response_co2 <- as.factor(raw_data_mortality_animal$ResponseToCO2Increase)
+mortality_plot_animal <- ggplot(raw_data_mortality_animal, aes(x = Response, fill = response_co2)) +
+  geom_bar(position = "dodge") +  # Position bars side by side
+  labs(title = "Bar Plot of Mortality by CO2 Increase Across Kingdom Animalia",
+       x = "Mortality",
+       y = "Count") +
+  theme_minimal() +
+  scale_fill_manual(values = custom_colors)
+
+mortality_plot_animal
+```
+```{r 4, include=FALSE}
+library(ggplot2)
+custom_colors <- c("Decreases" = "#FF6347",   # Tomato
+                   "Increases" = "#4682B4",   # SteelBlue
+                   "Other" = "#32CD32",
+                   "No_Response" = "#FDFD96")
+raw_data_size_animal <- raw_data_response %>%
+  filter(Response == c("Size"), Kingdom == c("Animalia"))
+summarize(raw_data_size_animal)
+response_co2 <- as.factor(raw_data_size_animal$ResponseToCO2Increase)
+size_plot_animal <- ggplot(raw_data_size_animal, aes(x = Response, fill = response_co2)) +
+  geom_bar(position = "dodge") +  # Position bars side by side
+  labs(title = "Bar Plot of Adult Size by CO2 Increase Across Kingdom Animalia",
+       x = "Adult Size",
+       y = "Count") +
+  theme_minimal() +
+  scale_fill_manual(values = custom_colors)
+
+size_plot_animal
+```
+
+```{r 8, include=FALSE}
+library(ggplot2)
+custom_colors <- c("Decreases" = "#FF6347",   # Tomato
+                   "Increases" = "#4682B4",   # SteelBlue
+                   "Other" = "#32CD32",
+                   "No_Response" = "#FDFD96")
 raw_data_growth_plant <- raw_data_response %>%
-  filter(Response %in% c("Growth rate", "Chromista"))
+  filter(Response == c("Growth rate"), Kingdom == c("Chromista"))
+summarize(raw_data_growth_plant)
 response_co2 <- as.factor(raw_data_growth_plant$ResponseToCO2Increase)
 growth_plot_plant <- ggplot(raw_data_growth_plant, aes(x = Response, fill = response_co2)) +
   geom_bar(position = "dodge") +  # Position bars side by side
-  labs(title = "Bar Plot of CO2 Response by Growth Rate Across Kingdom Chromista",
-       x = "Group",
+  labs(title = "Bar Plot of Growth Rate by CO2 Increase Across Kingdom Chromista",
+       x = "Growth Rate",
        y = "Count") +
   theme_minimal() +
-  scale_fill_brewer(palette = "Set3")
+  scale_fill_manual(values = custom_colors)
 growth_plot_plant
 ```
+
+```{r 4, include=FALSE}
+library(ggplot2)
+custom_colors <- c("Decreases" = "#FF6347",   # Tomato
+                   "Increases" = "#4682B4",   # SteelBlue
+                   "Other" = "#32CD32",
+                   "No_Response" = "#FDFD96")
+raw_data_size_plant <- raw_data_response %>%
+  filter(Response == c("Size"), Kingdom == c("Chromista"))
+summarize(raw_data_size_plant)
+response_co2 <- as.factor(raw_data_size_plant$ResponseToCO2Increase)
+size_plot_plant <- ggplot(raw_data_size_plant, aes(x = Response, fill = response_co2)) +
+  geom_bar(position = "dodge") +  # Position bars side by side
+  labs(title = "Bar Plot of Adult Size by CO2 Increase Across Kingdom Chromista",
+       x = "Adult Size",
+       y = "Count") +
+  theme_minimal() +
+  scale_fill_manual(values = custom_colors)
+
+size_plot_plant
+```
+
+```{r 4, include=FALSE}
+library(ggplot2)
+custom_colors <- c("Decreases" = "#FF6347",   # Tomato
+                   "Increases" = "#4682B4",   # SteelBlue
+                   "Other" = "#32CD32",
+                   "No_Response" = "#FDFD96")
+raw_data_mortality_plant <- raw_data_response %>%
+  filter(Response == c("Mortality"), Kingdom == c("Chromista"))
+summarize(raw_data_mortality_plant)
+response_co2 <- as.factor(raw_data_mortality_plant$ResponseToCO2Increase)
+mortality_plot_plant <- ggplot(raw_data_mortality_plant, aes(x = Response, fill = response_co2)) +
+  geom_bar(position = "dodge") +  # Position bars side by side
+  labs(title = "Bar Plot of Mortality by CO2 Increase Across Kingdom Chromista",
+       x = "Mortality",
+       y = "Count") +
+  theme_minimal() +
+  scale_fill_manual(values = custom_colors)
+
+mortality_plot_plant
+```
+
+```{r 4, include=FALSE}
+library(ggplot2)
+custom_colors <- c("Decreases" = "#FF6347",   # Tomato
+                   "Increases" = "#4682B4",   # SteelBlue
+                   "Other" = "#32CD32",
+                   "No_Response" = "#FDFD96")
+raw_data_survival_plant <- raw_data_response %>%
+  filter(Response == c("Survival"), Kingdom == c("Chromista"))
+summarize(raw_data_survival_plant)
+response_co2 <- as.factor(raw_data_survival_plant$ResponseToCO2Increase)
+survival_plot_plant <- ggplot(raw_data_survival_plant, aes(x = Response, fill = response_co2)) +
+  geom_bar(position = "dodge") +  # Position bars side by side
+  labs(title = "Bar Plot of Survivorship by CO2 Increase Across Kingdom Chromista",
+       x = "Survival",
+       y = "Count") +
+  theme_minimal() +
+  scale_fill_manual(values = custom_colors)
+
+survival_plot_plant
+```
+
+
 
