@@ -18,11 +18,11 @@ summarize(raw_data)
 ```{r 2, include=FALSE}
 # Use filter to extract specific locations
 raw_data_response <- raw_data %>%
-  filter(Response%in% c("Size", "Survival", "Shell length", "Mortality", "Growth rate"))
+  filter(Response%in% c("Size", "Survival", "Mortality", "Growth rate"))
 raw_data_response
 ```
 
-```{r 3, include=FALSE}
+```{r 3, include=TRUE}
 library(ggplot2)
 custom_colors <- c("Decreases" = "#FF6347",   # Tomato
                    "Increases" = "#4682B4",   # SteelBlue
@@ -42,7 +42,7 @@ size_plot <- ggplot(raw_data_size, aes(x = Response, fill = response_co2)) +
 size_plot
 ```
 
-```{r 4, include=FALSE}
+```{r 4, include=TRUE}
 library(ggplot2)
 custom_colors <- c("Decreases" = "#FF6347",   # Tomato
                    "Increases" = "#4682B4",   # SteelBlue
@@ -63,7 +63,7 @@ survival_plot
 ```
 
 
-```{r 6, include=FALSE}
+```{r 6, include=TRUE}
 library(ggplot2)
 custom_colors <- c("Decreases" = "#FF6347",   # Tomato
                    "Increases" = "#4682B4",   # SteelBlue
@@ -82,7 +82,7 @@ mortality_plot <- ggplot(raw_data_mortality, aes(x = Response, fill = response_c
 mortality_plot
 ```
 
-```{r 7, include=FALSE}
+```{r 7, include=TRUE}
 library(ggplot2)
 custom_colors <- c("Decreases" = "#FF6347",   # Tomato
                    "Increases" = "#4682B4",   # SteelBlue
@@ -90,6 +90,7 @@ custom_colors <- c("Decreases" = "#FF6347",   # Tomato
                    "No_Response" = "#FDFD96")
 raw_data_growth <- raw_data_response %>%
   filter(Response%in% c("Growth rate"))
+raw_data_growth
 response_co2 <- as.factor(raw_data_growth$ResponseToCO2Increase)
 growth_plot <- ggplot(raw_data_growth, aes(x = Response, fill = response_co2)) +
   geom_bar(position = "dodge") +  # Position bars side by side
@@ -101,7 +102,7 @@ growth_plot <- ggplot(raw_data_growth, aes(x = Response, fill = response_co2)) +
 growth_plot
 ```
 
-```{r 8, include=FALSE}
+```{r 8, include=TRUE}
 library(ggplot2)
 custom_colors <- c("Decreases" = "#FF6347",   # Tomato
                    "Increases" = "#4682B4",   # SteelBlue
@@ -121,7 +122,7 @@ growth_plot_animal <- ggplot(raw_data_growth_animal, aes(x = Response, fill = re
 growth_plot_animal
 ```
 
-```{r 4, include=FALSE}
+```{r 9, include=TRUE}
 library(ggplot2)
 custom_colors <- c("Decreases" = "#FF6347",   # Tomato
                    "Increases" = "#4682B4",   # SteelBlue
@@ -141,7 +142,7 @@ survival_plot_animal <- ggplot(raw_data_survival_animal, aes(x = Response, fill 
 
 survival_plot_animal
 ```
-```{r 4, include=FALSE}
+```{r 10, include=TRUE}
 library(ggplot2)
 custom_colors <- c("Decreases" = "#FF6347",   # Tomato
                    "Increases" = "#4682B4",   # SteelBlue
@@ -161,7 +162,7 @@ mortality_plot_animal <- ggplot(raw_data_mortality_animal, aes(x = Response, fil
 
 mortality_plot_animal
 ```
-```{r 4, include=FALSE}
+```{r 11, include=TRUE}
 library(ggplot2)
 custom_colors <- c("Decreases" = "#FF6347",   # Tomato
                    "Increases" = "#4682B4",   # SteelBlue
@@ -182,19 +183,19 @@ size_plot_animal <- ggplot(raw_data_size_animal, aes(x = Response, fill = respon
 size_plot_animal
 ```
 
-```{r 8, include=FALSE}
+```{r 12, include=TRUE}
 library(ggplot2)
 custom_colors <- c("Decreases" = "#FF6347",   # Tomato
                    "Increases" = "#4682B4",   # SteelBlue
                    "Other" = "#32CD32",
                    "No_Response" = "#FDFD96")
 raw_data_growth_plant <- raw_data_response %>%
-  filter(Response == c("Growth rate"), Kingdom == c("Chromista"))
+  filter(Response == c("Growth rate"), Kingdom == c("Chromista", "Plantae"))
 summarize(raw_data_growth_plant)
 response_co2 <- as.factor(raw_data_growth_plant$ResponseToCO2Increase)
 growth_plot_plant <- ggplot(raw_data_growth_plant, aes(x = Response, fill = response_co2)) +
   geom_bar(position = "dodge") +  # Position bars side by side
-  labs(title = "Bar Plot of Growth Rate by CO2 Increase Across Kingdom Chromista",
+  labs(title = "Bar Plot of Growth Rate by CO2 Increase Across Kingdom Chromista and Plantae",
        x = "Growth Rate",
        y = "Count") +
   theme_minimal() +
@@ -202,19 +203,19 @@ growth_plot_plant <- ggplot(raw_data_growth_plant, aes(x = Response, fill = resp
 growth_plot_plant
 ```
 
-```{r 4, include=FALSE}
+```{r 13, include=TRUE}
 library(ggplot2)
 custom_colors <- c("Decreases" = "#FF6347",   # Tomato
                    "Increases" = "#4682B4",   # SteelBlue
                    "Other" = "#32CD32",
                    "No_Response" = "#FDFD96")
 raw_data_size_plant <- raw_data_response %>%
-  filter(Response == c("Size"), Kingdom == c("Chromista"))
+  filter(Response == c("Size"), Kingdom == c("Chromista", "Plantae"))
 summarize(raw_data_size_plant)
 response_co2 <- as.factor(raw_data_size_plant$ResponseToCO2Increase)
 size_plot_plant <- ggplot(raw_data_size_plant, aes(x = Response, fill = response_co2)) +
   geom_bar(position = "dodge") +  # Position bars side by side
-  labs(title = "Bar Plot of Adult Size by CO2 Increase Across Kingdom Chromista",
+  labs(title = "Bar Plot of Adult Size by CO2 Increase Across Kingdom Chromista and Plantae",
        x = "Adult Size",
        y = "Count") +
   theme_minimal() +
@@ -223,19 +224,19 @@ size_plot_plant <- ggplot(raw_data_size_plant, aes(x = Response, fill = response
 size_plot_plant
 ```
 
-```{r 4, include=FALSE}
+```{r 14, include=TRUE}
 library(ggplot2)
 custom_colors <- c("Decreases" = "#FF6347",   # Tomato
                    "Increases" = "#4682B4",   # SteelBlue
                    "Other" = "#32CD32",
                    "No_Response" = "#FDFD96")
 raw_data_mortality_plant <- raw_data_response %>%
-  filter(Response == c("Mortality"), Kingdom == c("Chromista"))
-summarize(raw_data_mortality_plant)
+  filter(Response == c("Mortality"), Kingdom == c("Chromista","Plantae"))
+raw_data_mortality_plant
 response_co2 <- as.factor(raw_data_mortality_plant$ResponseToCO2Increase)
 mortality_plot_plant <- ggplot(raw_data_mortality_plant, aes(x = Response, fill = response_co2)) +
   geom_bar(position = "dodge") +  # Position bars side by side
-  labs(title = "Bar Plot of Mortality by CO2 Increase Across Kingdom Chromista",
+  labs(title = "Bar Plot of Mortality by CO2 Increase Across Kingdom Chromista and Plantae",
        x = "Mortality",
        y = "Count") +
   theme_minimal() +
@@ -244,19 +245,19 @@ mortality_plot_plant <- ggplot(raw_data_mortality_plant, aes(x = Response, fill 
 mortality_plot_plant
 ```
 
-```{r 4, include=FALSE}
+```{r 15, include=TRUE}
 library(ggplot2)
 custom_colors <- c("Decreases" = "#FF6347",   # Tomato
                    "Increases" = "#4682B4",   # SteelBlue
                    "Other" = "#32CD32",
                    "No_Response" = "#FDFD96")
 raw_data_survival_plant <- raw_data_response %>%
-  filter(Response == c("Survival"), Kingdom == c("Chromista"))
+  filter(Response == c("Survival"), Kingdom == c("Chromista", "Plantae"))
 summarize(raw_data_survival_plant)
 response_co2 <- as.factor(raw_data_survival_plant$ResponseToCO2Increase)
 survival_plot_plant <- ggplot(raw_data_survival_plant, aes(x = Response, fill = response_co2)) +
   geom_bar(position = "dodge") +  # Position bars side by side
-  labs(title = "Bar Plot of Survivorship by CO2 Increase Across Kingdom Chromista",
+  labs(title = "Bar Plot of Survivorship by CO2 Increase Across Kingdom Chromista and Plantae",
        x = "Survival",
        y = "Count") +
   theme_minimal() +
@@ -265,5 +266,126 @@ survival_plot_plant <- ggplot(raw_data_survival_plant, aes(x = Response, fill = 
 survival_plot_plant
 ```
 
+```{r 16, include=TRUE}
+# Assuming both 'Response' and 'CO2Increase' are factors
+chisq_test <- chisq.test(table(raw_data_response$Response, raw_data_response$ResponseToCO2Increase))
 
+# View the test results
+chisq_test
+```
+```{r 16, include=TRUE}
+# Load necessary library
+library(dplyr)
+
+# Assuming the 'raw_data_response' data frame exists and contains the factors 'CO2Increase' and 'Response'
+
+# Split the data by response type (you can adjust these levels according to your actual data)
+response_types <- unique(raw_data_response$Response)
+
+# Loop through each response type and run a Chi-Square test for 'CO2Increase' and 'Response'
+results <- lapply(response_types, function(response_type) {
+  # Subset data for this response type
+  subset_data <- raw_data_response %>% filter(Response == response_type)
+  
+  # Create a contingency table
+  contingency_table <- table(subset_data$ResponseToCO2Increase, subset_data$Response)
+  
+  # Perform Chi-Square test
+  chi_square_result <- chisq.test(contingency_table)
+  
+  # Return the result with the response type label
+  data.frame(Response_Type = response_type,
+             Chi_Square = chi_square_result$statistic,
+             p_value = chi_square_result$p.value)
+})
+
+# Combine results into a data frame
+chi_square_results <- do.call(rbind, results)
+
+# View results
+print(chi_square_results)
+```
+```{r 16, include=TRUE}
+# Load necessary library
+library(dplyr)
+
+# Assuming the 'raw_data_response' data frame exists and contains the columns 'CO2Increase', 'Response', and 'Kingdom'
+
+# Filter data for Kingdom Animalia
+animalia_data <- raw_data_response %>% filter(Kingdom == "Animalia")
+
+# Get unique response types (levels of the Response variable)
+response_types <- unique(animalia_data$Response)
+
+# Loop through each response type and run a Chi-Square test for 'CO2Increase' and 'Response' in Animalia
+results <- lapply(response_types, function(response_type) {
+  # Subset data for this response type within Kingdom Animalia
+  subset_data <- animalia_data %>% filter(Response == response_type)
+  
+  # Create a contingency table
+  contingency_table <- table(subset_data$ResponseToCO2Increase, subset_data$Response)
+  
+  # Perform Chi-Square test
+  chi_square_result <- chisq.test(contingency_table)
+  
+  # Return the result with the response type label
+  data.frame(Response_Type = response_type,
+             Chi_Square = chi_square_result$statistic,
+             p_value = chi_square_result$p.value)
+})
+
+# Combine results into a data frame
+chi_square_results_animalia <- do.call(rbind, results)
+
+# View the results
+print(chi_square_results_animalia)
+```
+
+```{r 16, include=TRUE}
+# Load necessary library
+library(dplyr)
+
+# Assuming the 'raw_data_response' data frame exists and contains the columns 'CO2Increase', 'Response', and 'Kingdom'
+
+# Filter data for Kingdom Animalia
+plant_data <- raw_data_response %>% filter(Kingdom == c("Chromista", "Plantae"))
+
+# Get unique response types (levels of the Response variable)
+response_types <- unique(plant_data$Response)
+
+# Loop through each response type and run a Chi-Square test for 'CO2Increase' and 'Response' in Animalia
+results <- lapply(response_types, function(response_type) {
+  # Subset data for this response type within Kingdom Animalia
+  subset_data <- plant_data %>% filter(Response == response_type)
+  
+  # Create a contingency table
+  contingency_table <- table(subset_data$ResponseToCO2Increases, subset_data$Response)
+  
+  # Perform Chi-Square test
+  chi_square_result <- chisq.test(contingency_table)
+  
+  # Return the result with the response type label
+  data.frame(Response_Type = response_type,
+             Chi_Square = chi_square_result$statistic,
+             p_value = chi_square_result$p.value)
+})
+
+# Combine results into a data frame
+chi_square_results_plant <- do.call(rbind, results)
+
+# View the results
+print(chi_square_results_plant)
+```
+
+```{r 16, include=TRUE}
+# Load the necessary library
+library(dplyr)
+
+# Get the count of each category in the "ResponsetoCO2Increase" column
+response_counts <- raw_data_response %>%
+  count(ResponseToCO2Increase)
+
+# View the result
+print(response_counts)
+```
 
